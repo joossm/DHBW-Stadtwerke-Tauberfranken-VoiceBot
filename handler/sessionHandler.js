@@ -47,4 +47,19 @@ export class SessionHandler {
         }
         return fallback(this.agent);
     }
+
+    getAllSessionParametersAsAString() {
+        let sessionState = this.agent.request_.body.queryResult.outputContexts.find(e => e.name.includes("session_state"));
+        // Check if sessionState is not null or undefined
+        if (sessionState != null) {
+            let sessionValue = sessionState.parameters;
+            // Check if sessionValue is not null or undefined
+            if(sessionValue != null) {
+                return JSON.stringify(sessionValue);
+            } else {
+                return "";
+            }
+        }
+        return fallback(this.agent);
+    }
 }

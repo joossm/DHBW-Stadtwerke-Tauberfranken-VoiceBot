@@ -7,16 +7,16 @@ export function eMail(agent) {
 
     // Handle email of moveout and supplier change
     //#################################################################################################################
-    if (!((state === "moveout_supplierChange_request_phone_email"))) {
+    if (!(state === "moveout_supplierChange_request_phone_email")) {
         return fallback(agent);
     }
-    if ((state === "moveout_state_flr") || (state === "supplierChange_state_flr")) {
+    if (state === "moveout_supplierChange_request_phone_email") {
         let email = agent.parameters.email;
-        sessionHandler.setSessionParameter({
+        sessionHandler.addSessionParameters({
             state: "moveout_supplierChange_request_meterNumber",
-            phone: email.toString()
+            phone: email
         });
-        agent.add("Bitte teilen Sie uns ihre Zählernummer mit.");
+        agent.add("Bitte teilen Sie uns ihre Zählernummer mit. Bitte in einem vollständigen Satz.");
         console.log("E-Mail: " + email.toString());
     }
     //#################################################################################################################

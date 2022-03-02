@@ -17,13 +17,13 @@ export function phoneNumber(agent) {
     if (!((state === "moveout_supplierChange_request_phone_email"))) {
         return fallback(agent);
     }
-    if ((state === "moveout_state_flr") || (state === "supplierChange_state_flr")) {
-        let phoneNumber = agent.parameters.phone-number;
-        sessionHandler.setSessionParameter({
+    if (state === "moveout_supplierChange_request_phone_email") {
+        let phoneNumber = agent.parameters.phonenumber;
+        sessionHandler.addSessionParameters({
             state: "moveout_supplierChange_request_meterNumber",
             phone: phoneNumber.toString()
         });
-        agent.add("Bitte teilen Sie uns ihre Zählernummer mit.");
+        agent.add("Bitte teilen Sie uns ihre Zählernummer mit. Bitte in einem vollständigen Satz.");
         console.log("Telefonnummer: " + phoneNumber.toString());
     }
     //#################################################################################################################

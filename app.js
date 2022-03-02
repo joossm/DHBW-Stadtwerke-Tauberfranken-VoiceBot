@@ -15,7 +15,10 @@ import {no} from "./intents/200_no/210_noIntent.js";
 import {supplierChange} from "./intents/200_no/selectedCallTopic/212_supplierChange/212_supplierChangeIntent.js";
 import {moveout} from "./intents/200_no/selectedCallTopic/211_moveout/211_moveoutIntent.js";
 import {fullName} from "./intents/300_data/310_fullNameIntent.js";
-import {adress} from "./intents/300_data/320_adressIntent.js";
+import {address} from "./intents/300_data/320_addressIntent.js";
+import {phoneNumber} from "./intents/300_data/330_phoneNumberIntent.js";
+import {eMail} from "./intents/300_data/340_eMailIntent.js";
+import {number} from "./intents/300_data/350_numberIntent.js";
 
 
 const app = express();
@@ -30,6 +33,10 @@ app.post("/webhook", express.json(), (req, res) => {
         response: res
     });
 
+    // --------------------------------------------------------------------------
+    // SETUP DATABABASE
+    // --------------------------------------------------------------------------
+
 
     // --------------------------------------------------------------------------
     // MAPPING INTENTS
@@ -43,9 +50,10 @@ app.post("/webhook", express.json(), (req, res) => {
     intentMap.set('211_moveoutIntent', moveout);
     intentMap.set('212_supplierChangeIntent', supplierChange);
     intentMap.set('310_fullNameIntent', fullName);
-    intentMap.set('320_adressIntent', adress);
+    intentMap.set('320_addressIntent', address);
     intentMap.set('330_phoneNumberIntent', phoneNumber);
     intentMap.set('340_eMailIntent', eMail);
+    intentMap.set('350_numberIntent', number);
     intentMap.set('999_fallbackIntent', fallback);
 
 

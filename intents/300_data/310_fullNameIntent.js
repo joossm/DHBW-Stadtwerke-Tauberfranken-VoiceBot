@@ -33,10 +33,10 @@ export function fullName(agent) {
     console.log("Name: " + firstname.toString() + " " + lastname.toString())
     console.log("State:" + newState.toString())
 
-    if ((state !== "moveoutConfirmation_state") || (state !== "supplierChangeConfirmation_state")) {
+    if ((state === "moveoutConfirmation_state") || (state === "supplierChangeConfirmation_state")) {
         agent.add("Bitte teilen Sie uns die auf dem Anschreiben angedruckte Kundennummer beginnend mit 1 mit.")
     }
-    if ((state !== "moveout_state") || (state !== "supplierChange_state")) {
-        agent.add("Bitte teilen Sie uns ihre Adresse mit.")
+    if ((state === "moveout_state") || (state === "supplierChange_state")) {
+        agent.add("Bitte teilen Sie uns ihre Adresse im Format Straße, Hausnummer, Postleitzahl und Stadt mit.")
     }
 }
