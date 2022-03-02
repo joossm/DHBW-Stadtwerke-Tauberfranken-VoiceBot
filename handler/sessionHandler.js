@@ -1,6 +1,6 @@
 "use strict";
 import {WebhookClient} from "dialogflow-fulfillment";
-import {fallback} from "../intents/fallbackIntent.js";
+import {fallback} from "../intents/999_fallbackIntent.js";
 export class SessionHandler {
     /**
      * constructor for SessionHandler

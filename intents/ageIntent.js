@@ -1,6 +1,6 @@
 import {WebhookClient} from 'dialogflow-fulfillment';
 import {SessionHandler} from "../handler/sessionHandler.js";
-import {fallback} from "./fallbackIntent.js";
+import {fallback} from "./999_fallbackIntent.js";
 
 /**
  * Default Welcome Intent
