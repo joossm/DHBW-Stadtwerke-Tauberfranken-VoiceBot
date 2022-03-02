@@ -19,6 +19,7 @@ import {address} from "./intents/300_data/320_addressIntent.js";
 import {phoneNumber} from "./intents/300_data/330_phoneNumberIntent.js";
 import {eMail} from "./intents/300_data/340_eMailIntent.js";
 import {number} from "./intents/300_data/350_numberIntent.js";
+import {date} from "./intents/300_data/360_dateIntent.js";
 
 
 const app = express();
@@ -54,6 +55,7 @@ app.post("/webhook", express.json(), (req, res) => {
     intentMap.set('330_phoneNumberIntent', phoneNumber);
     intentMap.set('340_eMailIntent', eMail);
     intentMap.set('350_numberIntent', number);
+    intentMap.set('360_dateIntent', date);
     intentMap.set('999_fallbackIntent', fallback);
 
 
