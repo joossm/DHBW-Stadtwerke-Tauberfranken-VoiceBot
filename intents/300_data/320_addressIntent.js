@@ -12,7 +12,7 @@ export function address(agent) {
     let sessionHandler = new SessionHandler(agent);
     let state = sessionHandler.getSessionParameter("state", null);
 
-    if (!((state === "moveout_state_flr") || (state === "supplierChange_state_flr") || (state === "moveout_supplierChange_request_meterAdress"))) {
+    if (!((state === "moveout_state_flr") || (state === "supplierChange_state_flr") || (state === "moveout_supplierChange_request_meterAdress")||(state === "moveoutConfirmation_state_request_adressFinalBill"))) {
         return fallback(agent);
     }
 
@@ -48,5 +48,18 @@ export function address(agent) {
     }
     //#################################################################################################################
 
+
+    // Handle Address for final bill of moveout Confirmation
+    //#################################################################################################################
+    if (state === "moveoutConfirmation_state_request_adressFinalBill") {
+        let address = agent.parameters.address;
+        sessionHandler.addSessionParameters({
+            state: "moveoutConfirmation_state_request_newTenant",
+            adressForFinalBill: address.toString()
+        });
+        console.log("Adresse Schlußrechnung: " + address.toString());
+
+       agent.add("Bitte teilen Sie uns sofern bekannt den Nachmieter oder Eigentümer mit.");
+    }
 
 }

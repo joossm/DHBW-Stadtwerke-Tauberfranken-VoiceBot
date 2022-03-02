@@ -11,8 +11,10 @@ export function number(agent) {
     let sessionHandler = new SessionHandler(agent);
     let state = sessionHandler.getSessionParameter("state", null);
 
-    if (!((state === "moveout_supplierChange_request_meterNumber") ||
-        (state === "moveout_supplierChange_request_meterReading"))) {
+    if (!((state === "moveout_supplierChange_request_meterNumber") || (state === "moveout_supplierChange_request_meterReading")
+        || (state === "supplierChangeConfirmation_state") || (state === "moveoutConfirmation_state") ||
+        (state === "supplierChangeConfirmation_request_meterNumber") || (state === "supplierChangeConfirmation_request_meterReading")
+        || (state === "moveoutConfirmation_state_request_meterNumber") || (state === "moveoutConfirmation_state_request_meterReading"))) {
         return fallback(agent);
     }
 
@@ -46,7 +48,6 @@ export function number(agent) {
     // Handle customer number of moveoutconfirmation and supplier changeConfirmation
     //#################################################################################################################
     if (state === "supplierChangeConfirmation_state") {
-
         let customerNumber = agent.parameters.number;
         sessionHandler.addSessionParameters({
             state: "supplierChangeConfirmation_request_phoneNumber_or_email",
@@ -63,7 +64,7 @@ export function number(agent) {
     if (state === "moveoutConfirmation_state") {
         let customerNumber = agent.parameters.number;
         sessionHandler.addSessionParameters({
-            state: "moveoutConfirmation_state_phoneNumber_or_email",
+            state: "moveoutConfirmation_state_request_phoneNumber_or_email",
             customerNumber: customerNumber.toString()
         });
         agent.add("Bitte teilen Sie uns ihre Telefonnummer oder E-Mail mit. Bitte antworten Sie in einem vollständigen Satz.");
@@ -71,4 +72,57 @@ export function number(agent) {
     }
     //#################################################################################################################
 
+
+    // Handle meter number of supplier change confirmation
+    //#################################################################################################################
+    if (state === "supplierChangeConfirmation_request_meterNumber") {
+        let meterNumber = agent.parameters.number;
+        sessionHandler.addSessionParameters({
+            state: "supplierChangeConfirmation_request_meterReading",
+            meterNumber: meterNumber.toString()
+        });
+        agent.add("Bitte teilen Sie uns ihren Zählerstand mit. Bitte in einem Vollständigen Satz.");
+        console.log("Zählernummer: " + meterNumber.toString());
+    }
+    //#################################################################################################################
+
+    // Handle meter number of supplier change confirmation
+    //#################################################################################################################
+    if (state === "supplierChangeConfirmation_request_meterReading") {
+        let meterReading = agent.parameters.number;
+        sessionHandler.addSessionParameters({
+            state: "supplierChangeConfirmation_request_meterReadingDate",
+            meterReading: meterReading.toString()
+        });
+        agent.add("Bitte teilen Sie uns die Adresse des Gebäudes in dem der Zähler eingebaut ist mit.");
+        console.log("Zählerstand: " + meterReading.toString());
+    }
+    //#################################################################################################################
+
+    // Handle meter number of moveout confirmation
+
+    //#################################################################################################################
+    if (state === "moveoutConfirmation_state_request_meterNumber") {
+        let meterNumber = agent.parameters.number;
+        sessionHandler.addSessionParameters({
+            state: "moveoutConfirmation_state_request_meterReading",
+            meterNumber: meterNumber.toString()
+        });
+        agent.add("Bitte teilen Sie uns ihren Zählerstand mit. Bitte in einem Vollständigen Satz.");
+        console.log("Zählernummer: " + meterNumber.toString());
+    }
+    //#################################################################################################################
+
+    // Handle meter reading of moveout confirmation
+    //#################################################################################################################
+    if (state === "moveoutConfirmation_state_request_meterReading") {
+        let meterReading = agent.parameters.number;
+        sessionHandler.addSessionParameters({
+            state: "moveoutConfirmation_state_request_meterReadingDate",
+            meterReading: meterReading.toString()
+        });
+        agent.add("Bitte teilen Sie uns die Adresse des Gebäudes in dem der Zähler eingebaut ist mit.");
+        console.log("Zählerstand: " + meterReading.toString());
+    }
+    //#################################################################################################################
 }

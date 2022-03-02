@@ -14,7 +14,7 @@ export function phoneNumber(agent) {
 
     // Handle phone number of moveout and supplier change
     //#################################################################################################################
-    if (!((state === "moveout_supplierChange_request_phone_email"))) {
+    if (!((state === "moveout_supplierChange_request_phone_email") || (state === "moveout_supplierChange_request_phone_email"))) {
         return fallback(agent);
     }
     if (state === "moveout_supplierChange_request_phone_email") {
@@ -24,6 +24,23 @@ export function phoneNumber(agent) {
             phone: phoneNumber.toString()
         });
         agent.add("Bitte teilen Sie uns ihre Zählernummer mit. Bitte in einem vollständigen Satz.");
+        console.log("Telefonnummer: " + phoneNumber.toString());
+    }
+    //#################################################################################################################
+
+
+    // Handle phone number of moveout and supplier change
+    //#################################################################################################################
+    if (!((state === "moveout_supplierChange_request_phone_email"))) {
+        return fallback(agent);
+    }
+    if (state === "moveout_supplierChange_request_phone_email") {
+        let phoneNumber = agent.parameters.phonenumber.toString();
+        sessionHandler.addSessionParameters({
+            state: "moveoutConfirmation_state_request_adressFinalBill",
+            phone: phoneNumber.toString()
+        });
+        agent.add("Bitte teilen Sie uns ihre neue Adresse für die Schlußrechnung mit.");
         console.log("Telefonnummer: " + phoneNumber.toString());
     }
     //#################################################################################################################
