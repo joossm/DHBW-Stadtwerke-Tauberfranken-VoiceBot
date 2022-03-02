@@ -15,6 +15,7 @@ import {no} from "./intents/200_no/210_noIntent.js";
 import {supplierChange} from "./intents/200_no/selectedCallTopic/212_supplierChange/212_supplierChangeIntent.js";
 import {moveout} from "./intents/200_no/selectedCallTopic/211_moveout/211_moveoutIntent.js";
 import {fullName} from "./intents/300_data/310_fullNameIntent.js";
+import {adress} from "./intents/300_data/320_adressIntent.js";
 
 
 const app = express();
@@ -42,6 +43,9 @@ app.post("/webhook", express.json(), (req, res) => {
     intentMap.set('211_moveoutIntent', moveout);
     intentMap.set('212_supplierChangeIntent', supplierChange);
     intentMap.set('310_fullNameIntent', fullName);
+    intentMap.set('320_adressIntent', adress);
+    intentMap.set('330_phoneNumberIntent', phoneNumber);
+    intentMap.set('340_eMailIntent', eMail);
     intentMap.set('999_fallbackIntent', fallback);
 
 
@@ -50,17 +54,3 @@ app.post("/webhook", express.json(), (req, res) => {
 
 app.listen(8080, () => console.log("Server is live at port 8080!"));
 
-// Falls 8080 belegt
-// netstat -ano | findstr :8080
-// taskkill /PID [task id] /F
-//
-// ngrok beenden
-// taskkill /f /im ngrok.exe
-//
-// ngrok http 8080
-// To RUN the APP:
-// node app.js
-
-// Add to package.json
-// below main
-//  "type": "module",
