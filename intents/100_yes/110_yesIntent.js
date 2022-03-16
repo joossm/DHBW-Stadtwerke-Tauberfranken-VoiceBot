@@ -11,15 +11,24 @@ import {fallback} from "../999_fallbackIntent.js";
 export function yes(agent) {
     let sessionHandler = new SessionHandler(agent);
     let state = sessionHandler.getSessionParameter("state", null);
-    if (state !== "start_state") {
+    if (state !== "START") {
         return fallback(agent);
     }
 
-    agent.add("Handelt es sich bei dem Anschreiben um eine Auszugsbestätigung oder Lieferantenwechselbestätigung?")
+    // START INTENT
+    if (state === "START") {
+        agent.add("Handelt es sich bei dem Anschreiben um eine Auszugsbestätigung oder Lieferantenwechselbestätigung?")
 
-    sessionHandler.addSessionParameters({
-        state: "yes_state",
+        sessionHandler.addSessionParameters({
+            state: "START_YES",
 
-    })
-    console.log("yes_state")
+        })
+        console.log("START_YES")
+    }
+
+    if (state === "START_YES") {
+
+
+    }
+
 }

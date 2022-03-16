@@ -5,48 +5,47 @@ export function eMail(agent) {
     let sessionHandler = new SessionHandler(agent);
     let state = sessionHandler.getSessionParameter("state", null);
 
-    // Handle email of moveout and supplier change
-    //#################################################################################################################
-    if (!((state === "moveout_supplierChange_request_phone_email") || (state === "moveoutConfirmation_state_request_phoneNumber_or_email") || (state === "supplierChangeConfirmation_request_phoneNumber_or_email"))) {
+    if (!((state === "MOC_CN")
+        || (state === "SCC_CN")
+        || (state === "MO_SC_ADDRESS"))) {
         return fallback(agent);
     }
-    if (state === "moveout_supplierChange_request_phone_email") {
+
+
+    // INTENTS Auszugsbestätigung
+    if (state === "MOC_CN") {
+        // Erfassung der EMail Adresse
         let email = agent.parameters.email;
         sessionHandler.addSessionParameters({
-            state: "moveout_supplierChange_request_meterNumber",
-            email: email.toString()
-        });
-        agent.add("Bitte teilen Sie uns ihre Zählernummer mit. Bitte in einem vollständigen Satz.");
-        console.log("E-Mail: " + email.toString());
-    }
-    //#################################################################################################################
-
-    // Handle email of moveout and supplier change
-    //#################################################################################################################
-
-    if (state === "moveoutConfirmation_state_request_phoneNumber_or_email") {
-        let email = agent.parameters.email;
-        sessionHandler.addSessionParameters({
-            state: "moveoutConfirmation_state_request_adressFinalBill",
-            email: email.toString()
+            state: "MOC_PE",
+            emailorphone: email.toString()
         });
         agent.add("Bitte teilen Sie uns ihre neue Adresse für die Schlußrechnung mit.");
         console.log("E-Mail: " + email.toString());
     }
-    //#################################################################################################################
 
 
-    // Handle email of moveout and supplier change
-    //#################################################################################################################
-
-    if (state === "supplierChangeConfirmation_request_phoneNumber_or_email") {
+    // INTENTS Lieferantenwechselbestätigung
+    if (state === "SCC_CN") {
+        // Erfassung der EMail Adresse
         let email = agent.parameters.email;
         sessionHandler.addSessionParameters({
-            state: "supplierChangeConfirmation_request_meterNumber",
-            email: email.toString()
+            state: "SCC_PE",
+            emailorphone: email.toString()
+        });
+        agent.add("Bitte teilen Sie uns ihre neue Adresse für die Schlußrechnung mit.");
+        console.log("E-Mail: " + email.toString());
+    }
+
+
+    // INTENTS Auszug & Lieferantenwechsel
+    if (state === "MO_SC_ADDRESS") {
+        let email = agent.parameters.email;
+        sessionHandler.addSessionParameters({
+            state: "MO_SC_PE",
+            emailorphone: email.toString()
         });
         agent.add("Bitte teilen Sie uns ihre Zählernummer mit. Bitte in einem vollständigen Satz.");
         console.log("E-Mail: " + email.toString());
     }
-    //#################################################################################################################
 }

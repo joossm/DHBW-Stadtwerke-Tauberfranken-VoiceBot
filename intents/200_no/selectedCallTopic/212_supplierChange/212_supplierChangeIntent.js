@@ -10,14 +10,14 @@ import {fallback} from "../../../999_fallbackIntent.js";
 export function supplierChange(agent) {
     let sessionHandler = new SessionHandler(agent);
     let state = sessionHandler.getSessionParameter("state", null);
-    if (state !== "no_state") {
+    if (state !== "START_NO") {
         return fallback(agent);
     }
 
     sessionHandler.addSessionParameters({
-        state: "supplierChange_state",
+        state: "SC",
         callTopic: "Lieferantenwechsel"
     })
-    console.log("supplierChange_state")
-    agent.add("Bitte teilen Sie uns Ihren Namen und Vornamen mit.")
+    console.log("SC")
+    agent.add("Bitte teilen Sie uns Ihren Vornamen und Nachnamen mit.")
 }

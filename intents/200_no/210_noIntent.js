@@ -11,14 +11,14 @@ import {fallback} from "../999_fallbackIntent.js";
 export function no(agent) {
     let sessionHandler = new SessionHandler(agent);
     let state = sessionHandler.getSessionParameter("state", null);
-    if (state !== "start_state") {
+    if (state !== "START") {
         return fallback(agent);
     }
 
     agent.add("Bitte teilen Sie uns den Grund für Ihre Ablesung mit, handelt es sich um einen Auszug oder Lieferantenwechsel?")
     sessionHandler.addSessionParameters({
-        state: "no_state",
+        state: "START_NO"
     })
 
-    console.log("no_state")
+    console.log("START_NO")
 }

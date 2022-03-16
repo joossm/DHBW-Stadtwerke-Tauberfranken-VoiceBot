@@ -11,16 +11,18 @@ import {fallback} from "../999_fallbackIntent.js";
 export function fullName(agent) {
     let sessionHandler = new SessionHandler(agent);
     let state = sessionHandler.getSessionParameter("state", null);
-    if (!((state === "moveoutConfirmation_state") || (state === "supplierChangeConfirmation_state") ||
-        (state === "moveout_state") || (state === "supplierChange_state") || (state === "moveoutConfirmation_state_request_newTenant"))) {
+    if (!((state === "MOC")
+        || (state === "SCC")
+        || (state === "MO")
+        || (state === "SC")
+        || (state === "MOC_FB"))) {
         return fallback(agent);
     }
 
-    // Get the caller name
-    // ##############################################################################################################################
-    if ((state === "moveoutConfirmation_state") || (state === "supplierChangeConfirmation_state") ||
-        (state === "moveout_state") || (state === "supplierChange_state")) {
-
+    // INTENTS Auszugsbestätigung & Lieferantenwechselbestätigung & Auszug & Lieferantenwechsel
+    if ((state === "MOC") || (state === "SCC") ||
+        (state === "MO") || (state === "SC")) {
+        // Erfassung des Vornamens und Nachnamens des Anrufers
         let firstname = agent.parameters.firstname;
         if (firstname == null) {
             return fallback(agent);
@@ -29,7 +31,7 @@ export function fullName(agent) {
         if (lastname == null) {
             return fallback(agent);
         }
-        let newState = state + "_flr"
+        let newState = state + "_NAME";
         sessionHandler.addSessionParameters({
             state: newState.toString(),
             firstname: firstname.toString(),
@@ -38,31 +40,23 @@ export function fullName(agent) {
         console.log("Name: " + firstname.toString() + " " + lastname.toString())
 
 
-        if ((state === "moveoutConfirmation_state") || (state === "supplierChangeConfirmation_state")) {
+        if ((state === "MOC") || (state === "SOC")) {
             agent.add("Bitte teilen Sie uns die auf dem Anschreiben angedruckte Kundennummer beginnend mit 1 mit.")
         }
-        if ((state === "moveout_state") || (state === "supplierChange_state")) {
+        if ((state === "MO") || (state === "SC")) {
             agent.add("Bitte teilen Sie uns ihre Adresse im Format Straße, Hausnummer, Postleitzahl und Stadt mit.")
         }
     }
-    // ##############################################################################################################################
 
 
-    // New tenant for moveout confirmation
-    // ##############################################################################################################################
-    if (state === "moveoutConfirmation_state_request_newTenant") {
-
+    // INTENTS Auszugsbestätigung
+    if (state === "MOC_FB") {
+        // Erfassung Name des Nachmieters
         let firstname = agent.parameters.firstname;
-        if (firstname == null) {
-            return fallback(agent);
-        }
         let lastname = agent.parameters.lastname;
-        if (lastname == null) {
-            return fallback(agent);
-        }
 
         sessionHandler.addSessionParameters({
-            state: "moveoutConfirmation_state_request_meterNumber",
+            state: "MOC_NT",
             firstname: firstname.toString(),
             lastname: lastname.toString()
         })
@@ -70,7 +64,6 @@ export function fullName(agent) {
 
         agent.add("Bitte teilen Sie uns die Zählernummer mit. Bitte antworten Sie in ganzen Sätzen.")
     }
-    // ##############################################################################################################################
 
 
 }

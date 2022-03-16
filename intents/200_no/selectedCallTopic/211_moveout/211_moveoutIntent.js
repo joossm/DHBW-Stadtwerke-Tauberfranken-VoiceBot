@@ -10,14 +10,14 @@ import {fallback} from "../../../999_fallbackIntent.js";
 export function moveout(agent) {
     let sessionHandler = new SessionHandler(agent);
     let state = sessionHandler.getSessionParameter("state", null);
-    if (state !== "no_state") {
+    if (state !== "START_NO") {
         return fallback(agent);
     }
 
     sessionHandler.addSessionParameters({
-        state: "moveout_state",
+        state: "MO",
         callTopic: "Auszug"
     })
-    console.log("moveout_state")
-    agent.add("Bitte teilen Sie uns Ihren Namen und Vornamen mit.")
+    console.log("MO")
+    agent.add("Bitte teilen Sie uns Ihren Vornamen und Nachnamen mit.")
 }
