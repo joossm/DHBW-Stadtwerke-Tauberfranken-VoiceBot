@@ -40,7 +40,7 @@ export function phoneNumber(agent) {
             state: "SCC_PE",
             emailorphone: phoneNumber.toString()
         });
-        agent.add("Bitte teilen Sie uns ihre Marktlokation oder Zählernummer mit. Bitte in einem vollständigen Satz.");
+        agent.add("Bitte teilen Sie uns ihre Marktlokation oder Zählernummer mit.  Bitte antworten Sie in einem vollständigen Satz.");
         console.log("Telefonnummer: " + phoneNumber.toString());
     }
 
@@ -53,7 +53,7 @@ export function phoneNumber(agent) {
             state: "MO_SC_PE",
             emailorphone: phoneNumber.toString()
         });
-        agent.add("Bitte teilen Sie uns ihre Marktlokation oder Zählernummer mit. Bitte in einem vollständigen Satz.");
+        agent.add("Bitte teilen Sie uns ihre Marktlokation oder Zählernummer mit. Bitte antworten Sie in einem vollständigen Satz.");
         console.log("Telefonnummer: " + phoneNumber.toString());
     }
 

@@ -20,7 +20,7 @@ export function eMail(agent) {
             state: "MOC_PE",
             emailorphone: email.toString()
         });
-        agent.add("Bitte teilen Sie uns ihre neue Adresse für die Schlußrechnung mit.");
+        agent.add("Bitte teilen Sie uns ihre neue Adresse für die Schlußrechnung mit. ");
         console.log("E-Mail: " + email.toString());
     }
 
@@ -33,7 +33,7 @@ export function eMail(agent) {
             state: "SCC_PE",
             emailorphone: email.toString()
         });
-        agent.add("Bitte teilen Sie uns ihre neue Adresse für die Schlußrechnung mit.");
+        agent.add("Bitte teilen Sie uns ihre Marktlokation oder Zählernummer mit. Bitte in einem vollständigen Satz.  Bitte antworten Sie in einem vollständigen Satz.");
         console.log("E-Mail: " + email.toString());
     }
 
@@ -45,7 +45,7 @@ export function eMail(agent) {
             state: "MO_SC_PE",
             emailorphone: email.toString()
         });
-        agent.add("Bitte teilen Sie uns ihre Zählernummer mit. Bitte in einem vollständigen Satz.");
+        agent.add("Bitte teilen Sie uns ihre Marktlokation oder Zählernummer mit. Bitte in einem vollständigen Satz.  Bitte antworten Sie in einem vollständigen Satz.");
         console.log("E-Mail: " + email.toString());
     }
 }

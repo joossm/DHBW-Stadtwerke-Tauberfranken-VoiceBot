@@ -41,7 +41,7 @@ export function fullName(agent) {
 
 
         if ((state === "MOC") || (state === "SOC")) {
-            agent.add("Bitte teilen Sie uns die auf dem Anschreiben angedruckte Kundennummer beginnend mit 1 mit.")
+            agent.add("Bitte teilen Sie uns die auf dem Anschreiben angedruckte Kundennummer beginnend mit 1 mit.  Bitte antworten Sie in einem vollständigen Satz.")
         }
         if ((state === "MO") || (state === "SC")) {
             agent.add("Bitte teilen Sie uns ihre Adresse im Format Straße, Hausnummer, Postleitzahl und Stadt mit.")
@@ -54,11 +54,10 @@ export function fullName(agent) {
         // Erfassung Name des Nachmieters
         let firstname = agent.parameters.firstname;
         let lastname = agent.parameters.lastname;
-
+        let fullname = firstname + " " + lastname;
         sessionHandler.addSessionParameters({
             state: "MOC_NT",
-            firstname: firstname.toString(),
-            lastname: lastname.toString()
+            nameNewTenant: fullname.toString()
         })
         console.log("Name: " + firstname.toString() + " " + lastname.toString())
 

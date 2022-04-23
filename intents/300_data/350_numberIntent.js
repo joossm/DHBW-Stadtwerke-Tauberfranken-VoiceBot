@@ -31,7 +31,7 @@ export function number(agent) {
             state: "MOC_CN",
             customerNumber: customerNumber.toString()
         });
-        agent.add("Bitte teilen Sie uns ihre Telefonnummer oder E-Mail mit. Bitte antworten Sie in einem vollständigen Satz.");
+        agent.add("Bitte teilen Sie uns ihre Telefonnummer oder E-Mail mit.");
         console.log("Kundennummer: " + customerNumber.toString());
     }
     if (state === "MOC_NT") {
@@ -64,7 +64,7 @@ export function number(agent) {
             state: "SCC_CN",
             customerNumber: customerNumber.toString()
         });
-        agent.add("Bitte teilen Sie uns ihre Telefonnummer oder E-Mail mit. Bitte antworten Sie in einem vollständigen Satz.");
+        agent.add("Bitte teilen Sie uns ihre Telefonnummer oder E-Mail mit.");
         console.log("Kundennummer: " + customerNumber.toString());
     }
     if (state === "SCC_PE") {
@@ -107,7 +107,7 @@ export function number(agent) {
             state: "MO_SC_MR",
             meterReading: meterReading.toString()
         });
-        agent.add("Bitte teilen Sie uns die Adresse des Gebäudes in dem der Zähler eingebaut ist mit.");
+        agent.add("Bitte teilen Sie uns die Adresse des Gebäudes in dem der Zähler eingebaut ist mit. Bitte antworten Sie in einem vollständigen Satz.");
         console.log("Zählerstand: " + meterReading.toString());
     }
 

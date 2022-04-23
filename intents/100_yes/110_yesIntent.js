@@ -14,7 +14,7 @@ export function yes(agent) {
     if (!((state === "MOC_MRD")
         || (state === "SCC_MRD")
         || (state === "MO_SC_MA")
-        || (state !== "START"))) {
+        || (state === "START"))) {
         return fallback(agent);
     }
 

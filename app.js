@@ -20,6 +20,7 @@ import {phoneNumber} from "./intents/300_data/330_phoneNumberIntent.js";
 import {eMail} from "./intents/300_data/340_eMailIntent.js";
 import {number} from "./intents/300_data/350_numberIntent.js";
 import {date} from "./intents/300_data/360_dateIntent.js";
+import {SessionHandler} from "./handler/sessionHandler.js";
 
 
 const app = express();

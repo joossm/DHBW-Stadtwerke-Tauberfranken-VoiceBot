@@ -14,10 +14,10 @@ export function no(agent) {
     if (!((state === "MOC_MRD")
         || (state === "SCC_MRD")
         || (state === "MO_SC_MA")
-        || (state !== "START"))) {
+        || (state === "START"))) {
         return fallback(agent);
     }
-    if (state === "START") {
+    if (state === "START" ) {
         agent.add("Bitte teilen Sie uns den Grund für Ihre Ablesung mit, handelt es sich um einen Auszug oder Lieferantenwechsel?")
         sessionHandler.addSessionParameters({
             state: "START_NO"

@@ -9,7 +9,7 @@ export function date(agent) {
         (state === "SCC_MR"))) {
         return fallback(agent);
     }
-
+    // TODO: Alle Eingaben überprüfen
     // TODO: date problem solving
     // INTENTS Auszugsbestätigung
     if (state === "MOC_MR") {
@@ -19,21 +19,21 @@ export function date(agent) {
             state: "MOC_MRD",
             meterReadingDate: readingDate.toString()
         });
-        console.log("Zählernummer: " + readingDate.toString());
+        console.log("Ablesedatum: " + readingDate.toString());
 
 
-        // TODO: Alle Eingaben überprüfen
+
         agent.add("Bitte überprüfen Sie die Daten:");
-        agent.add("Anrufgrund: " + sessionHandler.getSessionParameter("callTopic"));
-        agent.add("Name: " + sessionHandler.getSessionParameter("firstname") + " "
-            + sessionHandler.getSessionParameter("lastname"));
-        agent.add("Kundennummer: " + sessionHandler.getSessionParameter("customerNumber"));
-        agent.add("E-Mail oder Telefonnummer: " + sessionHandler.getSessionParameter("emailorphone"));
-        agent.add("Adresse für Schlußrechnung: " + sessionHandler.getSessionParameter("addressForFinalBill"));
-        agent.add("Name des Nachmieters oder Eigentümers: " + sessionHandler.getSessionParameter("newTenantName"));
-        agent.add("Zählernummer oder Marktlokation: " + sessionHandler.getSessionParameter("meterNumber"));
-        agent.add("Zählerstand: " + sessionHandler.getSessionParameter("meterReading"));
-        agent.add("Ablesedatum: " + sessionHandler.getSessionParameter("meterReadingDate"));
+        agent.add("Anrufgrund: " + sessionHandler.getSessionParameter("callTopic").toString());
+        agent.add("Name: " + sessionHandler.getSessionParameter("firstname").toString() + " "
+            + sessionHandler.getSessionParameter("lastname").toString());
+        agent.add("Kundennummer: " + sessionHandler.getSessionParameter("customerNumber").toString());
+        agent.add("E-Mail oder Telefonnummer: " + sessionHandler.getSessionParameter("emailorphone").toString());
+        agent.add("Adresse für Schlußrechnung: " + sessionHandler.getSessionParameter("addressForFinalBill").toString());
+        agent.add("Name des Nachmieters oder Eigentümers: " + sessionHandler.getSessionParameter("nameNewTenant").toString());
+        agent.add("Zählernummer oder Marktlokation: " + sessionHandler.getSessionParameter("meterNumber").toString());
+        agent.add("Zählerstand: " + sessionHandler.getSessionParameter("meterReading").toString());
+        agent.add("Ablesedatum: " + sessionHandler.getSessionParameter("meterReadingDate").toString());
         agent.add("Sind alle Angaben korrekt?");
 
     }
@@ -46,20 +46,19 @@ export function date(agent) {
             state: "SCC_MRD",
             meterReadingDate: readingDate.toString()
         });
-        console.log("Zählernummer: " + readingDate.toString());
+        console.log("Ablesedatum: " + readingDate.toString());
 
         // TODO: Alle Eingaben überprüfen
         agent.add("Bitte überprüfen Sie die Daten:");
-        agent.add("Anrufgrund: " + sessionHandler.getSessionParameter("callTopic"));
-        agent.add("Name: " + sessionHandler.getSessionParameter("firstname") + " "
-            + sessionHandler.getSessionParameter("lastname"));
-        agent.add("Kundennummer: " + sessionHandler.getSessionParameter("customerNumber"));
-        agent.add("E-Mail oder Telefonnummer: " + sessionHandler.getSessionParameter("emailorphone"));
-       agent.add("Zählernummer oder Marktlokation: " + sessionHandler.getSessionParameter("meterNumber"));
-        agent.add("Zählerstand: " + sessionHandler.getSessionParameter("meterReading"));
-        agent.add("Ablesedatum: " + sessionHandler.getSessionParameter("meterReadingDate"));
+        agent.add("Anrufgrund: " + sessionHandler.getSessionParameter("callTopic").toString());
+        agent.add("Name: " + sessionHandler.getSessionParameter("firstname").toString()+ " "
+            + sessionHandler.getSessionParameter("lastname").toString());
+        agent.add("Kundennummer: " + sessionHandler.getSessionParameter("customerNumber").toString());
+        agent.add("E-Mail oder Telefonnummer: " + sessionHandler.getSessionParameter("emailorphone").toString());
+        agent.add("Zählernummer oder Marktlokation: " + sessionHandler.getSessionParameter("meterNumber").toString());
+        agent.add("Zählerstand: " + sessionHandler.getSessionParameter("meterReading").toString());
+        agent.add("Ablesedatum: " + sessionHandler.getSessionParameter("meterReadingDate").toString());
         agent.add("Sind alle Angaben korrekt?");
-
 
 
     }
