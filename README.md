@@ -1,4 +1,4 @@
-# dhbw-swtauberfranken
+# DHBW-Stadtwerke-Tauberfranken-VoiceBot
 VoiceBot
 
 ## Set Up Local
