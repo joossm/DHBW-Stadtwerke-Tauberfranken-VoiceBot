@@ -15,9 +15,9 @@ export function supplierChangeConfirmation(agent){
     }
 
     sessionHandler.addSessionParameters({
-        state: "SOC",
+        state: "SCC",
         callTopic: "Lieferantenwechselbestätigung"
     })
-    console.log("SOC")
+    console.log("SCC")
     agent.add("Bitte teilen Sie uns Ihren Vornamen und Nachnamen mit.")
 }

@@ -43,7 +43,6 @@ export function address(agent) {
             address: address.toString()
         });
         agent.add("Bitte teilen Sie uns ihre Telefonnummer oder E-Mail mit. Bitte in antworten Sie in einem vollständigen Satz.");
-        // TODO: Add address
         console.log("Adresse: " + address.toString());
     }
     if (state === "MO_SC_MR") {

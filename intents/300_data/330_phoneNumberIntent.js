@@ -14,7 +14,7 @@ export function phoneNumber(agent) {
 
     if (!((state === "MOC_CN")
         || (state === "SCC_CN")
-        || (state === "MOC_CN_ADDRESS"))) {
+        || (state === "MO_SC_ADDRESS"))) {
         return fallback(agent);
     }
 

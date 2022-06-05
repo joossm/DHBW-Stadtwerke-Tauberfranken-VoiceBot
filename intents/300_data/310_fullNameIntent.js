@@ -12,7 +12,7 @@ export function fullName(agent) {
     let sessionHandler = new SessionHandler(agent);
     let state = sessionHandler.getSessionParameter("state", null);
     if (!((state === "MOC")
-        || (state === "SOC")
+        || (state === "SCC")
         || (state === "MO")
         || (state === "SC")
         || (state === "MOC_FB"))) {
@@ -20,7 +20,7 @@ export function fullName(agent) {
     }
 
     // INTENTS Auszugsbestätigung & Lieferantenwechselbestätigung & Auszug & Lieferantenwechsel
-    if ((state === "MOC") || (state === "SOC") ||
+    if ((state === "MOC") || (state === "SCC") ||
         (state === "MO") || (state === "SC")) {
         // Erfassung des Vornamens und Nachnamens des Anrufers
         let firstname = agent.parameters.firstname;
@@ -40,7 +40,7 @@ export function fullName(agent) {
         console.log("Name: " + firstname.toString() + " " + lastname.toString())
 
 
-        if ((state === "MOC") || (state === "SOC")) {
+        if ((state === "MOC") || (state === "SCC")) {
             agent.add("Bitte teilen Sie uns die auf dem Anschreiben angedruckte Kundennummer beginnend mit 1 mit.  Bitte antworten Sie in einem vollständigen Satz.")
         }
         if ((state === "MO") || (state === "SC")) {
