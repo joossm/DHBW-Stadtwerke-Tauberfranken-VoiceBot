@@ -12,7 +12,7 @@ export function fullName(agent) {
     let sessionHandler = new SessionHandler(agent);
     let state = sessionHandler.getSessionParameter("state", null);
     if (!((state === "MOC")
-        || (state === "SCC")
+        || (state === "SOC")
         || (state === "MO")
         || (state === "SC")
         || (state === "MOC_FB"))) {
@@ -20,7 +20,7 @@ export function fullName(agent) {
     }
 
     // INTENTS Auszugsbestätigung & Lieferantenwechselbestätigung & Auszug & Lieferantenwechsel
-    if ((state === "MOC") || (state === "SCC") ||
+    if ((state === "MOC") || (state === "SOC") ||
         (state === "MO") || (state === "SC")) {
         // Erfassung des Vornamens und Nachnamens des Anrufers
         let firstname = agent.parameters.firstname;

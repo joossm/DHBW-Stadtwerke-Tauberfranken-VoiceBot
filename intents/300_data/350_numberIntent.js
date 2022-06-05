@@ -14,7 +14,7 @@ export function number(agent) {
     if (!((state === "MOC_NAME")
         || (state === "MOC_NT")
         || (state === "MOC_MN")
-        || (state === "SCC_NAME")
+        || (state === "SOC_NAME")
         || (state === "SCC_PE")
         || (state === "SCC_MN")
         || (state === "MO_SC_PE")
@@ -57,7 +57,7 @@ export function number(agent) {
 
 
     // INTENTS Lieferantenwechselbestätigung
-    if (state === "SCC_NAME") {
+    if (state === "SOC_NAME") {
         // Erfassung der Kundennummer
         let customerNumber = agent.parameters.number;
         sessionHandler.addSessionParameters({
